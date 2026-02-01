@@ -1,0 +1,75 @@
+<!--<div class="favorite">-->
+<!--  <div class="container">-->
+<!--    <div class="favorite-title"></div>-->
+<!--    <div class="favorite-products">-->
+<!--      <div class="favorite-product" *ngFor="let favproduct of favproducts">-->
+<!--        <div class="favorite-product-image"-->
+<!--             [style.background-image]="'url(' + serverStaticPath + favproduct.image + ')'">></div>-->
+
+<!--        <div class="favorite-product-name">{{ favproduct.name }}</div>-->
+<!--        <div class="favorite-product-price">{{ favproduct.price }} RUB</div>-->
+<!--        <div class="favorite-product-action">-->
+<!--          <button class="button" routerLink="/detail/{{favproduct.url}}">Открыть</button>-->
+<!--        </div>-->
+<!--        <div class="favorite-product-remove" (click)="removeFromFavorites(favproduct.id)">-->
+<!--          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--            <line x1="1.93562" y1="2.6499" x2="13.9564" y2="14.6707" stroke="#A8ABA7" stroke-linecap="round"/>-->
+<!--            <line x1="13.9238" y1="2.62996" x2="1.90301" y2="14.6508" stroke="#A8ABA7" stroke-linecap="round"/>-->
+<!--          </svg>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="favorite">
+  <div class="container">
+    <!-- Статичный заголовок -->
+    <div class="favorite-title">
+      <h1>Избранное</h1>
+    </div>
+
+    <!-- Простая проверка работы *ngIf -->
+    <div *ngIf="true" style="color: green; padding: 20px; border: 2px solid green;">
+      ✅ ЭТОТ ТЕКСТ ВСЕГДА ВИДЕН - значит *ngIf работает
+    </div>
+
+    <!-- Проверка переменной -->
+    <div style="margin: 20px 0; padding: 10px; background: #f0f0f0;">
+      <p>isLoading: {{ isLoading }}</p>
+      <p>errorMessage: {{ errorMessage }}</p>
+      <p>favproducts length: {{ favproducts.length }}</p>
+    </div>
+
+    <!-- Загрузка -->
+    <div *ngIf="isLoading" style="color: blue; padding: 20px;">
+      <h3>🔄 Загрузка избранных товаров...</h3>
+      <p>Проверяем работу Observable</p>
+    </div>
+
+    <!-- Ошибка -->
+    <div *ngIf="errorMessage && !isLoading" style="color: red; padding: 20px;">
+      <h3>❌ Ошибка: {{ errorMessage }}</h3>
+    </div>
+
+    <!-- Список товаров -->
+    <div *ngIf="!isLoading && !errorMessage && favproducts.length > 0">
+      <h3>✅ Товары в избранном:</h3>
+      <div *ngFor="let product of favproducts">
+        <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+          <h4>{{ product.name }}</h4>
+          <p>Цена: {{ product.price }} руб.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Пусто -->
+    <div *ngIf="!isLoading && !errorMessage && favproducts.length === 0" style="color: orange; padding: 20px;">
+      <h3>📭 В избранном ничего нет</h3>
+    </div>
+
+    <button (click)="testAuth()" style="margin: 10px; padding: 10px; background: #007bff; color: white;">
+      🔐 Тест авторизации
+    </button>
+  </div>
+</div>

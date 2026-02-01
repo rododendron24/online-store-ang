@@ -1,0 +1,151 @@
+@import "mixins";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+height: 100%;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex: 1; /* 👈 ключевая строка */
+  display: block;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 17px 20px;
+  border: 2px solid #2C496B;
+  border-radius: 3px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-text-color;
+}
+
+.small-input {
+  border: 1px solid #2C496B;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  width: 40px;
+  height: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: $green-text-color;
+}
+
+.button {
+  text-align: center;
+  padding: 15px;
+  background: #2C496B;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+
+  &.button-transparent {
+    background-color: transparent;
+    border: 1px solid #2C496B;
+    color: $green-text-color;
+  }
+
+  &.button-icon {
+display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      margin-left: 16px;
+    }
+  }
+
+  &:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+
+  &.button-in-cart span {
+    &:first-child {
+      display: block;
+    }
+    &:last-child {
+display: none;
+    }
+  }
+
+  &:hover {
+    &.button-in-cart span {
+      &:first-child {
+        display: none;
+      }
+      &:last-child {
+        display: block;
+      }
+    }
+  }
+}
+
+a.button {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.mat-mdc-menu-item.mat-focus-indicator {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+
+  a {
+    text-decoration: none!important;
+    color: $gray-text-color!important;
+  }
+}
+
+.carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+
+  .carousel-title {
+    @include head-lora-32;
+  }
+
+  .carousel-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      cursor: pointer;
+
+      &:first-child {
+        margin-right: 30px;
+      }
+    }
+  }
+}
