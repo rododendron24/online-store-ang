@@ -8,6 +8,10 @@ import {ProductCard} from '../../../shared/components/product-card/product-card'
 import {ActivatedRoute} from '@angular/router';
 import {CountSelector} from '../../../shared/components/count-selector/count-selector';
 import {CartService} from '../../../shared/services/cart';
+import {FavoritesType} from '../../../../types/favorites.type';
+import {DefaultResponseType} from '../../../../types/default-response.type';
+import {environment} from '../../../../environments/environment';
+import {FavoriteService} from '../../../shared/services/favorite';
 
 
 @Component({
@@ -61,7 +65,8 @@ export class Detail implements OnInit {
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
-              private cartService: CartService, private cdr: ChangeDetectorRef) {}
+              private cartService: CartService, private cdr: ChangeDetectorRef,
+              private favoriteService: FavoriteService) {}
 
 
   // ngOnChanges(changes: SimpleChanges): void {
@@ -103,8 +108,15 @@ export class Detail implements OnInit {
         });
       })
     );
+  }
 
-
+  addToFavorites(productId: string): void {
+    this.favoriteService.addToFavorites(productId).subscribe({
+      next: () => {
+        console.log('Добавлено в избранное');
+      },
+      error: err => console.error('Ошибка', err)
+    });
   }
 
   // Методы для продуктовой карусели
@@ -155,6 +167,7 @@ export class Detail implements OnInit {
       this.cdr.detectChanges();
     });
   }
+
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

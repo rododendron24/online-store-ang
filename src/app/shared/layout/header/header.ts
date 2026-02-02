@@ -90,7 +90,7 @@ export class Header implements OnInit {
   }
 }
 
-
+//вариант 2
 // @Component({
 //   selector: 'app-header',
 //   standalone: true,
